@@ -1,4 +1,4 @@
-node('master || built-in'){
+node('main || master || built-in'){
     stage('checkout'){
         git 'https://github.com/BhanuprakashaB/MyFirstTest.git'
     }
