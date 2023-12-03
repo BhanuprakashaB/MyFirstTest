@@ -1,1 +1,1 @@
-clean test
+call clean test
