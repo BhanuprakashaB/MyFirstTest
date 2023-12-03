@@ -1,6 +1,6 @@
 node('main || master || built-in'){
     stage('checkout'){
-        git 'https://github.com/BhanuprakashaB/MyFirstTest.git'
+        git branch: 'main', url: 'https://github.com/BhanuprakashaB/MyFirstTest.git'
     }
     stage('build'){
         env.PATH ='C:\\apache-maven-3.9.5\\bin;C:\\Windows\\System32'
