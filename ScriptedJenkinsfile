@@ -1,0 +1,12 @@
+node('master || built-in'){
+    stage('checkout'){
+        git 'https://github.com/BhanuprakashaB/MyFirstTest.git'
+    }
+    stage('build'){
+        env.PATH ='C:\\apache-maven-3.9.5\\bin;C:\\Windows\\System32'
+        bat 'mvn package'
+    }
+    stage('archive'){
+        archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+    }
+}
