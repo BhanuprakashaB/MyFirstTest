@@ -1,1 +1,1 @@
-call clean test
+call mvn clean test
