@@ -1,0 +1,33 @@
+pipeline{
+agent any
+	stages{
+		stage('checkout'){
+			steps{
+				echo 'Checking out !!'
+				git branch: 'main', url: 'https://github.com/BhanuprakashaB/MyFirstTest.git'
+			}
+		}
+		stage('build'){
+			steps{
+				echo 'Building'
+				script{
+					env.PATH ='C:\\apache-maven-3.9.5\\bin;C:\\Windows\\System32'
+				}
+				bat label: '', script: 'mvn package'
+			}
+		}
+
+		stage('archiving'){
+			steps{
+				echo 'archiving'
+				archiveArtifacts 'target/*.jar'	
+			}
+		}
+	}
+	post {
+		always {
+			echo 'Pipeline finished'
+			 step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
+		}
+	}
+}
